@@ -319,8 +319,8 @@ p { margin: 0; line-height: 1.5; }
   transition: opacity 220ms ease, width 220ms ease, height 220ms ease, background-color 220ms ease;
   will-change: transform;
 }
-.page-home:hover .cursor-dot,
-.page-home:hover .cursor-ring { opacity: 1; }
+body:hover .cursor-dot,
+body:hover .cursor-ring { opacity: 1; }
 .cursor-ring.is-interactive { width: 58px; height: 58px; background-color: hsla(var(--accent-hsl), .09); }
 .cursor-dot.is-interactive { width: 5px; height: 5px; }
 
@@ -350,7 +350,7 @@ p { margin: 0; line-height: 1.5; }
   opacity: 0;
   transition: opacity 500ms ease;
 }
-.page-home:hover .cursor-gravity { opacity: 1; }
+body:hover .cursor-gravity { opacity: 1; }
 
 .home-kicker,
 .hero-eyebrow,
@@ -460,7 +460,7 @@ p { margin: 0; line-height: 1.5; }
 }
 
 /* 4. One-Bite Microinteractions: parallax stays micro-scoped; hover lifts are global. */
-.page-home[data-prototype="micro"] .cursor-ring { opacity: 1; border-color: hsla(var(--black-hsl), .55); }
+[data-prototype="micro"] .cursor-ring { border-color: hsla(var(--black-hsl), .55); }
 .page-home[data-prototype="micro"] .hero-frame { transform: translate(calc(var(--hero-x, 0) * -8px), calc(var(--hero-y, 0) * -8px)); }
 .page-home[data-prototype="micro"] .hero-frame img { transform: scale(1.035) translate(calc(var(--hero-x, 0) * 15px), calc(var(--hero-y, 0) * 15px)); filter: brightness(60%) sepia(7%) saturate(1.05); }
 .page-home[data-prototype="micro"] .hero-copy { transform: translateY(-50%) translate(calc(var(--hero-x, 0) * 18px), calc(var(--hero-y, 0) * 18px)); }

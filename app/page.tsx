@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { BodyClass } from '@/components/BodyClass'
-import { CursorEffects } from '@/components/CursorEffects'
 import { HeroParallax } from '@/components/HeroParallax'
 
 export const metadata: Metadata = {
@@ -14,7 +13,6 @@ export default function HomePage() {
   return (
     <>
       <BodyClass className="page-home" />
-      <CursorEffects />
       <main className="main">
         <section className="home-hero" aria-label="Hanoi Bites hero">
           <div className="home-kicker">Northern Vietnamese Cuisine · Toronto</div>
