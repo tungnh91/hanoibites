@@ -1,7 +1,9 @@
 node_modules/
+.next/
 dist/
 .run/
 research/
 screenshots/
 .DS_Store
 .env*
+.vercel

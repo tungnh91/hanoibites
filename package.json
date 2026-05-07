@@ -1,14 +1,25 @@
 {
-  "name": "hanoibites-bun-static-clone",
-  "version": "1.0.0",
+  "name": "hanoibites",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "bun ./index.html ./menu.html ./about.html --console",
-    "build": "rm -rf dist && bun build ./index.html ./menu.html ./about.html --minify --outdir=dist",
-    "test": "bun test",
-    "screenshot": "bun run build && bun scripts/screenshot.ts",
-    "serve:dist": "bun run build && bun scripts/serve-dist.ts"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "next": "^15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
+    "playwright": "^1.59.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  }
 }
