@@ -129,3 +129,243 @@ p { margin: 0; line-height: 1.5; }
   .footer-grid { display: block; width: 330px; margin: 0; }
   .footer-block + .footer-block { margin-top: 60px; }
 }
+
+/* Temporary home-page redesign prototype layer */
+.page-home {
+  --cursor-x: -100px;
+  --cursor-y: -100px;
+  --prototype-shadow: 0 28px 90px hsla(var(--black-hsl), 0.14);
+}
+
+.page-home .site-header,
+.page-home .hero-frame,
+.page-home .hero-copy,
+.page-home .hero-frame img,
+.page-home .hero-order-link,
+.page-home .home-kicker,
+.page-home .postcard-stamp,
+.page-home .footer-block,
+.page-home .logo {
+  transition: transform 520ms ease, opacity 420ms ease, filter 520ms ease, box-shadow 520ms ease, border-radius 520ms ease, background-color 420ms ease, color 420ms ease;
+}
+
+.prototype-switcher {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100vw - 36px);
+  padding: 8px;
+  border: 1px solid hsla(var(--black-hsl), 0.14);
+  border-radius: 999px;
+  background: hsla(var(--white-hsl), 0.86);
+  box-shadow: 0 18px 48px hsla(var(--black-hsl), 0.12);
+  backdrop-filter: blur(14px);
+  font-size: 12px;
+}
+.prototype-switcher-label {
+  padding: 0 8px 0 10px;
+  color: hsla(var(--black-hsl), 0.62);
+  white-space: nowrap;
+}
+.prototype-switcher button {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 11px;
+  background: transparent;
+  color: hsl(var(--black-hsl));
+  font: inherit;
+  cursor: pointer;
+}
+.prototype-switcher button.is-active {
+  color: hsl(var(--white-hsl));
+  background: hsl(var(--black-hsl));
+}
+
+.prototype-cursor {
+  position: fixed;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  z-index: 60;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  border: 1px solid hsla(var(--accent-hsl), 0.75);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  mix-blend-mode: multiply;
+  transition: width 180ms ease, height 180ms ease, opacity 180ms ease, background-color 180ms ease;
+}
+.page-home:hover .prototype-cursor { opacity: .8; }
+.prototype-cursor.is-interactive { width: 54px; height: 54px; background: hsla(var(--accent-hsl), .11); }
+
+.home-kicker,
+.hero-eyebrow,
+.hero-order-link,
+.postcard-stamp { display: none; }
+
+.hero-order-link {
+  width: max-content;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-size: 15px;
+  line-height: 1;
+}
+.hero-order-link:hover { text-decoration: none; transform: translateY(-2px); }
+
+/* 1. Quiet Editorial: same structure, cleaner rhythm, subtle image reveal. */
+.page-home[data-prototype="quiet"] .hero-frame {
+  box-shadow: none;
+  animation: quietReveal 800ms ease both;
+}
+.page-home[data-prototype="quiet"] .hero-frame img {
+  filter: brightness(61%) sepia(5%) saturate(.94);
+  transform: scale(1.01);
+}
+.page-home[data-prototype="quiet"] .hero-copy h1 { letter-spacing: -0.035em; }
+.page-home[data-prototype="quiet"] .nav-link::after,
+.page-home[data-prototype="quiet"] .order-button { transition: transform 260ms ease, background-color 260ms ease; }
+.page-home[data-prototype="quiet"] .order-button:hover { transform: translateY(-2px); background: hsla(var(--black-hsl), .035); text-decoration: none; }
+
+@keyframes quietReveal {
+  from { opacity: .72; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Hanoi Postcard: same photo and palette, but with paper/card memory. */
+.page-home[data-prototype="postcard"] {
+  background:
+    radial-gradient(circle at 12% 16%, hsla(var(--accent-hsl), .12), transparent 24%),
+    radial-gradient(circle at 88% 70%, hsla(var(--dark-accent-hsl), .08), transparent 25%),
+    hsl(var(--white-hsl));
+}
+.page-home[data-prototype="postcard"] .home-hero { padding-top: 8px; }
+.page-home[data-prototype="postcard"] .hero-frame {
+  border: 14px solid hsla(var(--white-hsl), .88);
+  border-radius: 2px;
+  box-shadow: var(--prototype-shadow);
+  transform: rotate(-.35deg);
+}
+.page-home[data-prototype="postcard"] .hero-frame::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  z-index: 2;
+  pointer-events: none;
+  background-image: linear-gradient(90deg, hsla(var(--black-hsl), .035) 1px, transparent 1px), linear-gradient(hsla(var(--black-hsl), .025) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: .35;
+  mix-blend-mode: multiply;
+}
+.page-home[data-prototype="postcard"] .postcard-stamp {
+  display: block;
+  position: absolute;
+  right: 34px;
+  top: 34px;
+  z-index: 4;
+  padding: 15px 17px;
+  border: 1px dashed hsla(var(--accent-hsl), .85);
+  color: hsl(var(--accent-hsl));
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(7deg);
+}
+.page-home[data-prototype="postcard"] .hero-copy { top: 45%; }
+.page-home[data-prototype="postcard"] .hero-copy h1 { text-shadow: 0 10px 36px hsla(var(--black-hsl), .38); }
+.page-home[data-prototype="postcard"] .footer-block:hover { transform: translateY(-4px) rotate(-.25deg); }
+
+/* 3. Modern Food Hall: larger photo, floating conversion panel. */
+@media (min-width: 768px) {
+  .page-home[data-prototype="foodhall"] .home-hero { padding-top: 0; }
+  .page-home[data-prototype="foodhall"] .hero-frame { min-height: 880px; border-radius: 24px; box-shadow: var(--prototype-shadow); }
+  .page-home[data-prototype="foodhall"] .hero-frame::after { background: linear-gradient(90deg, rgba(0,0,0,.34), rgba(0,0,0,.08) 58%, rgba(0,0,0,.16)); mix-blend-mode: normal; }
+  .page-home[data-prototype="foodhall"] .hero-copy {
+    left: 58px;
+    right: auto;
+    top: auto;
+    bottom: 64px;
+    width: min(670px, 54vw);
+    transform: none;
+    text-align: left;
+    padding: 38px 42px 40px;
+    border: 1px solid hsla(var(--white-hsl), .28);
+    border-radius: 24px;
+    background: hsla(var(--white-hsl), .12);
+    backdrop-filter: blur(18px);
+  }
+  .page-home[data-prototype="foodhall"] .hero-copy h1 { font-size: clamp(42px, 4.2vw, 62px); }
+  .page-home[data-prototype="foodhall"] .hero-copy p { margin-left: 0; margin-right: 0; font-size: 20px; }
+  .page-home[data-prototype="foodhall"] .hero-eyebrow,
+  .page-home[data-prototype="foodhall"] .hero-order-link { display: inline-flex; }
+  .page-home[data-prototype="foodhall"] .hero-eyebrow { margin-bottom: 18px; font-size: 13px; text-transform: uppercase; letter-spacing: .16em; opacity: .86; }
+  .page-home[data-prototype="foodhall"] .hero-order-link { margin-top: 28px; color: hsl(var(--accent-hsl)); }
+  .page-home[data-prototype="foodhall"] .order-button { background: hsl(var(--black-hsl)); color: hsl(var(--white-hsl)); }
+}
+
+/* 4. One-Bite Microinteractions: mostly original, but lively hover/cursor/parallax. */
+.page-home[data-prototype="micro"] .prototype-cursor { opacity: 1; border-color: hsla(var(--black-hsl), .55); }
+.page-home[data-prototype="micro"] .logo-link:hover .logo { transform: scale(1.06) rotate(-2deg); }
+.page-home[data-prototype="micro"] .hero-frame { transform: translate(calc(var(--hero-x, 0) * -8px), calc(var(--hero-y, 0) * -8px)); }
+.page-home[data-prototype="micro"] .hero-frame img { transform: scale(1.035) translate(calc(var(--hero-x, 0) * 15px), calc(var(--hero-y, 0) * 15px)); filter: brightness(60%) sepia(7%) saturate(1.05); }
+.page-home[data-prototype="micro"] .hero-copy { transform: translateY(-50%) translate(calc(var(--hero-x, 0) * 18px), calc(var(--hero-y, 0) * 18px)); }
+.page-home[data-prototype="micro"] .order-button:hover,
+.page-home[data-prototype="micro"] .nav-link:hover { transform: translateY(-3px); text-decoration: none; }
+.page-home[data-prototype="micro"] .footer-block:hover { transform: translateY(-8px); }
+
+/* 5. Northern Vietnamese Minimal: refined atmosphere with very subtle tile motif. */
+.page-home[data-prototype="minimal"] .main {
+  background:
+    linear-gradient(30deg, transparent 47%, hsla(var(--accent-hsl), .08) 48%, hsla(var(--accent-hsl), .08) 52%, transparent 53%) 0 0/42px 42px,
+    hsl(var(--white-hsl));
+}
+.page-home[data-prototype="minimal"] .home-kicker {
+  display: block;
+  max-width: var(--site-max);
+  margin: 0 auto 24px;
+  color: hsla(var(--black-hsl), .62);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.page-home[data-prototype="minimal"] .hero-frame { border-radius: 0; outline: 1px solid hsla(var(--black-hsl), .12); outline-offset: 16px; }
+.page-home[data-prototype="minimal"] .hero-frame img { filter: brightness(64%) sepia(4%) saturate(.88); }
+.page-home[data-prototype="minimal"] .hero-copy { top: 44%; }
+.page-home[data-prototype="minimal"] .hero-copy h1 { font-size: clamp(44px, 4.4vw, 64px); }
+.page-home[data-prototype="minimal"] .hero-copy p { max-width: 850px; font-size: 20px; }
+.page-home[data-prototype="minimal"] .footer-grid { border-top: 1px solid hsla(var(--black-hsl), .16); padding-top: 56px; }
+
+@media (max-width: 767px) {
+  .prototype-switcher {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    border-radius: 18px;
+  }
+  .prototype-switcher-label { display: none; }
+  .prototype-switcher button { flex: 0 0 auto; }
+  .prototype-cursor { display: none; }
+  .home-kicker, .hero-eyebrow, .hero-order-link, .postcard-stamp { display: none !important; }
+  .page-home[data-prototype="postcard"] .hero-frame { border: 8px solid hsla(var(--white-hsl), .9); transform: rotate(-.5deg); box-shadow: 0 18px 48px hsla(var(--black-hsl), .12); }
+  .page-home[data-prototype="foodhall"] .hero-copy { padding: 0; background: transparent; border: 0; backdrop-filter: none; }
+  .page-home[data-prototype="micro"] .hero-frame,
+  .page-home[data-prototype="micro"] .hero-frame img,
+  .page-home[data-prototype="micro"] .hero-copy { transform: none; }
+  .page-home[data-prototype="minimal"] .hero-frame { outline: 0; }
+  .page-home[data-prototype="minimal"] .main { background: hsl(var(--white-hsl)); }
+}
+
+@media (pointer: coarse) {
+  .prototype-cursor { display: none; }
+}

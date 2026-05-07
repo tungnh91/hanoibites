@@ -17,6 +17,8 @@ describe("Bun static Hanoi Bites clone", () => {
 
     expect(home).toContain("The flavours of our Hanoi home");
     expect(home).toContain("./assets/hero.jpeg");
+    expect(home).toContain("Home prototypes");
+    expect(home).toContain("./home-prototypes.js");
     expect(menu).toContain("Pork Sizzlers");
     expect(menu).toContain("VERMICELLI (BÚN) BOWL");
     expect(about).toContain("I grew up in Hanoi");
@@ -30,5 +32,10 @@ describe("Bun static Hanoi Bites clone", () => {
     expect(css).toContain("font-family: 'Libre Baskerville'");
     expect(css).toContain("font-family: 'Almarai'");
     expect(css).toContain("--page-padding: 4vw");
+    expect(css).toContain("data-prototype=\"quiet\"");
+    expect(css).toContain("data-prototype=\"postcard\"");
+    expect(css).toContain("data-prototype=\"foodhall\"");
+    expect(css).toContain("data-prototype=\"micro\"");
+    expect(css).toContain("data-prototype=\"minimal\"");
   });
 });

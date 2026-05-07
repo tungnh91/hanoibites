@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="page-home">
+<body class="page-home" data-prototype="quiet">
   <header class="site-header">
     <nav class="nav-left" aria-label="Primary navigation">
       <a class="nav-link active" href="./index.html">Home</a>
@@ -26,13 +26,27 @@
     </div>
   </header>
 
+  <aside class="prototype-switcher" aria-label="Temporary homepage prototype switcher">
+    <span class="prototype-switcher-label">Home prototypes</span>
+    <button type="button" data-prototype-choice="quiet">1 Quiet</button>
+    <button type="button" data-prototype-choice="postcard">2 Postcard</button>
+    <button type="button" data-prototype-choice="foodhall">3 Food Hall</button>
+    <button type="button" data-prototype-choice="micro">4 Micro</button>
+    <button type="button" data-prototype-choice="minimal">5 Minimal</button>
+  </aside>
+  <div class="prototype-cursor" aria-hidden="true"></div>
+
   <main class="main">
     <section class="home-hero" aria-label="Hanoi Bites hero">
+      <div class="home-kicker">Northern Vietnamese Cuisine · Toronto</div>
       <div class="hero-frame">
+        <span class="postcard-stamp" aria-hidden="true">Hanoi<br />Bites</span>
         <img src="./assets/hero.jpeg" alt="Interior of a casual restaurant or cafe with a Hanoi Bites sign" />
         <div class="hero-copy">
+          <span class="hero-eyebrow">Waterworks Food Hall</span>
           <h1>The flavours of our Hanoi home</h1>
           <p>Authentic Northern Vietnamese cuisine at Waterworks Food Hall on King West. Bánh mì, Bún Chả Bowl, and Vietnamese Iced Coffee made the way we'd serve them in Hanoi.</p>
+          <a class="hero-order-link" href="https://www.ubereats.com/ca/store/hanoi-bites-waterworks/PniiG2piVuSMeTtGp6S_nw" target="_blank" rel="noreferrer">Order now</a>
         </div>
       </div>
     </section>
@@ -45,5 +59,6 @@
       <section class="footer-block"><h4>Contact</h4><p>hanoibites@gmail.com<br />(416) 892-8563</p></section>
     </div>
   </footer>
+  <script type="module" src="./home-prototypes.js"></script>
 </body>
 </html>
