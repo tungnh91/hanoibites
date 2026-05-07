@@ -1,0 +1,10 @@
+/dist/
+/assets/
+/screenshots/
+/research/
+/scripts/
+/tests/
+/.run/
+styles.css
+theme.js
+home-prototypes.js
