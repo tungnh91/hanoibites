@@ -1,0 +1,14 @@
+{
+  "name": "hanoibites-bun-static-clone",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun ./index.html ./menu.html ./about.html --console",
+    "build": "rm -rf dist && bun build ./index.html ./menu.html ./about.html --minify --outdir=dist",
+    "test": "bun test",
+    "screenshot": "bun run build && bun scripts/screenshot.ts",
+    "serve:dist": "bun run build && bun scripts/serve-dist.ts"
+  },
+  "devDependencies": {}
+}
