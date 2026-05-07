@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { CursorEffects } from '@/components/CursorEffects'
 
 export const metadata: Metadata = {
   title: 'Hanoi Bites — Authentic Banh Mi & Bun Cha in Toronto | King West',
@@ -29,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* FOUC prevention — always default to light */}
         <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.theme=localStorage.getItem('hb-theme-v2')||'light'` }} />
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Almarai:ital,wght@0,400;0,700&display=swap" rel="stylesheet" />
       </head>
       <body data-prototype="micro">
+        <CursorEffects />
         <Header />
         {children}
         <Footer />
